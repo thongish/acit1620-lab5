@@ -12,7 +12,7 @@
         The <div> which is the first child of the <header> must also (on screens with a minimum width of 800px) be a grid, with two rows set of 'max-content' height and an auto number of columns
 
         The <div> inside that div, containing two paragraphs with the text "CSS Flexbox is a one-dimensional...", and "CSS Grid is a two-dimensional..." must (on screens with a minimum width of 800px) also be a grid with an 'auto' number of rows and two columns of 1fr. Additionally it must have a gap between the columns of width 2em
-
+        
     <section id="flexbox">
 
         The <section> element with id 'flexbox' must be display: flex with its child elements laid out in a column
@@ -44,3 +44,102 @@
         On screens wider than 800px, the <p> element inside the div must additionally have no top margin
 
 */
+
+/* header {
+    @media screen and (min-width: 800px) {
+
+    }
+} */
+
+#flexbox {
+    display: flex;
+    flex-direction: column;
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 800px) { 
+    header {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 1fr;  
+    }
+
+    .bg-pink {
+        display: grid;
+        grid-template-rows: max-content, max-content;
+        grid-template-columns: auto;
+    }
+
+    .bg-pink div {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2em;
+    }
+
+    #flexbox > h2 {
+        font-size: 6em;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto 250px 250px 250px 250px;
+    }
+
+    /* The <div> inside the section must start at column two and span two columns, start at row three and span three columns */
+
+    #grid div {
+       grid-row: 3 / span 3;
+       grid-column: 2 / span 2;
+    }
+
+    #grid > p:nth-of-type(1) {
+        grid-column: 1 / span 2;
+    }
+
+    #grid h2 {
+        grid-column: 1 / span 3;
+        text-align: right;
+        font-size: 6em;
+    }
+
+    #grid h2 p div {
+        padding: 1em;
+    }
+
+    footer div {
+        display: flex;
+        flex-direction: row;
+        padding: 4em;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* The <div> inside the footer must be display: flex, with its child elements laid out in a column on screens with a width below 800px, and laid out in a row on screens with a minimum width of 800px.
+
+        On screens wider than 800px, the <div> must additionally have 4em of padding on all sides, and the image and text inside must swap positions (image on top on smaller screens, image on the right-hand side on larger screens)
+
+        On screens wider than 800px, the <p> element inside the div must additionally have no top margin */
+ }
+
+ @media screen and (max-width: 800px) {
+    footer div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer img {
+        order: 1;
+    }
+
+    footer p {
+        order: 2;
+    }
+ }
